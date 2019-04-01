@@ -9,5 +9,5 @@ Options:
 	-I		Take input from stdin
 	-f <file name>	Encrypt/Decrypt given file
 	-h, -u		Show this help/usage message
-  
+	
   See "COPYING" for license information.
