@@ -23,6 +23,7 @@
  *
  */
 
+/* For getopt() */
 #include <unistd.h>
 
 #include <stdio.h>
