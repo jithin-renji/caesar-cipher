@@ -175,7 +175,7 @@ void usage (char* prog_name)
 
     printf("Options:\n");
     printf("\t-e\t\tEncrypt plain text\n");
-    printf("\t-d\t\tDecrypt plain text\n");
+    printf("\t-d\t\tDecrypt Caesar cipher text\n");
     printf("\t-I\t\tTake input from stdin\n");
     printf("\t-f <file name>\tEncrypt/Decrypt given file\n");
     printf("\t-h, -u\t\tShow this help/usage message\n");
