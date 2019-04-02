@@ -173,6 +173,7 @@ void usage (char* prog_name)
 {
     printf("Usage: %s <-e | -d> -f <file name> [-o <output file name>] <shift size>\n", prog_name);
     printf("\t%s <-e | -d> <plain text> <shift size>\n", prog_name);
+    printf("\t%s <-e | -d> -I <shift size>\n", prog_name);
 
     printf("Options:\n");
     printf("\t-e\t\tEncrypt plain text\n");

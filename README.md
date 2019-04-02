@@ -19,6 +19,7 @@ sudo make install
 ```
 Usage: caesar <-e | -d> -f <file name> [-o <output file name>] <shift size>
        caesar <-e | -d> <plain text> <shift size>
+       caesar <-e | -d> -I <shift size>
 
 Options:
 	-e		Encrypt plain text
