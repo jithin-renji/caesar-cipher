@@ -23,7 +23,7 @@
  *
  */
 
-/* For getopt() */
+/* For getopt_long() */
 #include <getopt.h>
 
 #include <stdio.h>
@@ -203,7 +203,7 @@ void usage (char* prog_name)
 void version (void)
 {
     printf("caesar 1.1\n");
-    printf("Copyright (C) Jithin Renji.\n");
+    printf("Copyright (C) 2019 Jithin Renji.\n");
     printf("License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>.\n");
     printf("This is free software: you are free to change and redistribute it.\n");
     printf("There is NO WARRANTY, to the extent permitted by law.\n\n");
