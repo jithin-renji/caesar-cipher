@@ -247,6 +247,18 @@ void caesar_f (char* fname, char* ofname, int shift_size, int encr_decr)
     /* Output file name */
     char ofname_default[FILENAME_MAX];
 
+    if (in_file == NULL) {
+	    char msg[BUF_SIZE];
+	    strcpy(msg, "caesar: cannot open ");
+	    strcat(msg, "'");
+	    strcat(msg, fname);
+	    strcat(msg, "'");
+
+	    perror(msg);
+
+	    exit(EXIT_FAILURE);
+    }
+
     if (encr_decr == ENCRYPT) {
         if (strcmp(ofname, "") == 0) {
             strcpy(ofname_default, fname);
