@@ -6,7 +6,7 @@ This program has been tested on Elementary OS 5.0 (Juno).
 ### Installation
 
 <ol>
-	<li>Change to the source directory</li>
+	<li>Change to the source directory.</li>
 	<li>Run the following commands:</li>
 </ol>
 
