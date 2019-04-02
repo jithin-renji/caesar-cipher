@@ -22,11 +22,16 @@ Usage: caesar <-e | -d> -f <file name> [-o <output file name>] <shift size>
        caesar <-e | -d> -I <shift size>
 
 Options:
-	-e		Encrypt plain text
-	-d		Decrypt Caesar cipher text
-	-I		Take input from stdin
-	-f <file name>	Encrypt/Decrypt given file
-	-h, -u		Show this help/usage message
+	-e, --encrypt		Encrypt plain text
+	-d, --decrypt		Decrypt Caesar cipher text
+	-I, --input		Take input from stdin
+	-f, --file <file name>	Encrypt/Decrypt given file
+
+	-o, --out <file name	Name of the output file in which
+				the encrypted/decrypted fileis going
+				to be stored
+
+	-h, -u			Show this help/usage message
 ```
 
 See "COPYING" for license information.

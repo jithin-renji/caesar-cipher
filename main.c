@@ -24,7 +24,7 @@
  */
 
 /* For getopt() */
-#include <unistd.h>
+#include <getopt.h>
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -38,6 +38,20 @@
     in the program
 */
 #define BUF_SIZE    2048
+
+int option_index = 0;
+
+/* Long options */
+static struct option long_options[] = {
+    {"encrypt",     no_argument,        0, 'e'},
+    {"decrypt",     no_argument,        0, 'd'},
+    {"file",        required_argument,  0, 'f'},
+    {"help",        no_argument,        0, 'h'},
+    {"out",         required_argument,  0, 'o'},
+    {"input",       no_argument,        0, 'I'},
+    {"version",     no_argument,        0, 'V'},
+    {0,             0,                  0,  0}
+};
 
 static char ret_str[BUF_SIZE] = "";
 
@@ -57,7 +71,7 @@ int main (int argc, char** argv)
 {
     if (argc < 2) {
         fprintf(stderr, "%s: Not enough arguments!\n", argv[0]);
-        fprintf(stderr, "Try '%s -h'\n", argv[0]);        
+        fprintf(stderr, "Try '%s --help'\n", argv[0]);        
     } else {
 
         int opt;
@@ -82,7 +96,7 @@ int main (int argc, char** argv)
 	    /* Input from stdin or not */
 	    int in_from_stdin = 0;
 
-        while ((opt = getopt(argc, argv, "edf:huo:IV")) != -1) {
+        while ((opt = getopt_long(argc, argv, "edf:ho:IV", long_options, &option_index)) != -1) {
             switch (opt){
             case 'e':
                 encrypt = 1;
@@ -98,7 +112,6 @@ int main (int argc, char** argv)
                 break;
 
             case 'h':
-            case 'u':
                 usage(argv[0]);
                 help = 1;
                 break;
@@ -151,12 +164,12 @@ int main (int argc, char** argv)
                 }
             }
 	    } else if ((encrypt == 1) ^ (decrypt == 1)){
-            if (argv[optind + 1] == NULL && in_from_stdin == 0) {
+            if (argv[optind] == NULL) {
+                fprintf(stderr, "Error: No text provided\n");
+                exit(EXIT_FAILURE);
+            } else if (argv[optind + 1] == NULL) {
                 fprintf(stderr, "Error: Shift size not provided\n");
                 exit(EXIT_FAILURE);
-            } else if (argv[optind] == NULL && in_from_stdin == 1) {
-		        fprintf(stderr, "Error: Shift size not provided\n");
-		        exit(EXIT_FAILURE);
             } else {
                 if (encrypt == 1)
                     caesar(argv[optind], atoi(argv[optind + 1]), ENCRYPT, 1);
@@ -172,20 +185,24 @@ int main (int argc, char** argv)
 void usage (char* prog_name)
 {
     printf("Usage: %s <-e | -d> -f <file name> [-o <output file name>] <shift size>\n", prog_name);
-    printf("\t%s <-e | -d> <plain text> <shift size>\n", prog_name);
-    printf("\t%s <-e | -d> -I <shift size>\n", prog_name);
+    printf("       %s <-e | -d> <plain text> <shift size>\n", prog_name);
+    printf("       %s <-e | -d> -I <shift size>\n", prog_name);
 
     printf("Options:\n");
-    printf("\t-e\t\tEncrypt plain text\n");
-    printf("\t-d\t\tDecrypt Caesar cipher text\n");
-    printf("\t-I\t\tTake input from stdin\n");
-    printf("\t-f <file name>\tEncrypt/Decrypt given file\n");
-    printf("\t-h, -u\t\tShow this help/usage message\n");
+    printf("\t-e, --encrypt\t\tEncrypt plain text\n");
+    printf("\t-d, --decrypt\t\tDecrypt Caesar cipher text\n");
+    printf("\t-I, --input\t\tTake input from stdin\n");
+    printf("\t-f, --file <file name>\tEncrypt/Decrypt given file\n\n");
+    printf("\t-o, --out <file name>\tName of the output file in which\n\
+                                the encrypted/decrypted file is going\n\
+                                to be stored\n\n");
+    printf("\t-h, --help\t\tShow this help message\n");
+    printf("\t-V, --version\t\tShow version information\n");
 }
 
 void version (void)
 {
-    printf("caesar 1.0\n");
+    printf("caesar 1.1\n");
     printf("Copyright (C) Jithin Renji.\n");
     printf("License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>.\n");
     printf("This is free software: you are free to change and redistribute it.\n");
