@@ -31,7 +31,7 @@ Options:
 				the encrypted/decrypted fileis going
 				to be stored
 
-	-h, -u			Show this help/usage message
+	-h, --help		Show this help message
 ```
 
 See "COPYING" for license information.
