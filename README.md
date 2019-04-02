@@ -32,6 +32,7 @@ Options:
 				to be stored
 
 	-h, --help		Show this help message
+	-V, --version		Show version information
 ```
 
 See "COPYING" for license information.
