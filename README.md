@@ -1,8 +1,6 @@
 # Caesar Cipher
 This is a program to encrypt and decrypt a given string of file using caesar cipher.
 
-This program has been tested on Elementary OS 5.0 (Juno).
-
 ### Installation
 
 <ol>
